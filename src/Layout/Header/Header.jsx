@@ -1,9 +1,42 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const navLinks = [
+    {
+      name: "Home",
+      to: "/",
+    },
+    {
+      name: "Opportunities",
+      to: "/opportunities",
+    },
+    {
+      name: "About Us",
+      to: "/aboutus",
+    },
+  ];
   return (
-    <div>Header</div>
-  )
-}
+    <header className="bg-black py-6">
+      <div className="max-w-[1336px] w-full mx-auto px-[20px]">
+        <div className="flex items-center justify-between">
+          <Link className="text-white font-bold text-4 " to={"/"}>
+            VolunteerUz
+          </Link>
 
-export default Header
+          <ul className="flex items-center gap-[20px]">
+            {navLinks?.map((link) => (
+              <li key={link.name}>
+                <Link className="" to={link?.to}>
+                  {link?.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
