@@ -9,7 +9,7 @@ const Header = () => {
     },
     {
       name: "Opportunities",
-      to: "/opportunities",
+      to: "/opportunity",
     },
     {
       name: "About Us",
@@ -27,7 +27,7 @@ const Header = () => {
           <ul className="flex items-center gap-[20px]">
             {navLinks?.map((link) => (
               <li key={link.name}>
-                <Link className="" to={link?.to}>
+                <Link className="text-[#FFFFFF99] font-inter" to={link?.to}>
                   {link?.name}
                 </Link>
               </li>
