@@ -1,5 +1,5 @@
 import React from "react";
-import { cardData } from "../../api/cardData";
+import { cardData } from "../../../api/cardData"
 import Item from "./Item/Item";
 
 const Cards = () => {

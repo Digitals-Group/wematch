@@ -50,7 +50,7 @@ const Item = ({ image, title, text, payment, time, experience, location }) => {
           </div>
         </div>
 
-        <button className="w-full bg-black text-white uppercase rounded-[12px] py-[20px] font-bold text-4 border-2 border-transparent leading-[100%] hover:bg-white hover:text-black border-2 border-[black] transition">
+        <button className="w-full bg-black text-white uppercase rounded-[12px] py-[20px] font-bold text-4 border-2 border-transparent leading-[100%] hover:bg-white hover:text-black hover:border-black transition">
           View Details
         </button>
       </div>

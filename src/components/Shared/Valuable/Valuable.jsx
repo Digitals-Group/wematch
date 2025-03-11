@@ -1,7 +1,7 @@
 import React from "react";
-import { data } from "../../api/data";
-import cardImage from "../../assets/images/cardImg.png";
-import profileIcon from "../../assets/svg/profile.svg";
+import { data } from "../../../api/data";
+import cardImage from "../../../assets/images/cardImg.png";
+import profileIcon from "../../../assets/svg/profile.svg";
 
 const Valuable = () => {
   return (
