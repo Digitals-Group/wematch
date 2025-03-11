@@ -5,7 +5,7 @@ import profileIcon from "../../assets/svg/profile.svg";
 
 const Valuable = () => {
   return (
-    <section className="bg-[#F8F9FA] pt-[180px] pb-[120px]">
+    <section className="bg-[#F8F9FA] pt-[180px] pb-[120px] mb-[120px]">
       <div className="max-w-[1336px] w-full mx-auto px-[20px]">
         <div className="grid grid-cols-2 items-center gap-[60px]">
           <div>
@@ -33,8 +33,12 @@ const Valuable = () => {
               <div className="text-[red] flex items-center gap-[10px] cursor-pointer">
                 <img src={profileIcon} alt="" />
                 <div>
-                  <h4 className="text-black font-semibold text-[20px] leading-6">Felipe Vaughn</h4>
-                  <span className="text-black font-nornal text-4 leading-6">Founder</span>
+                  <h4 className="text-black font-semibold text-[20px] leading-6">
+                    Felipe Vaughn
+                  </h4>
+                  <span className="text-black font-nornal text-4 leading-6">
+                    Founder
+                  </span>
                 </div>
               </div>
             </div>
