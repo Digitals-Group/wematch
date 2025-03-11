@@ -4,7 +4,7 @@ import Item from "./Item/Item";
 
 const Cards = () => {
   return (
-    <section className="">
+    <section className="mb-[36px]">
       <div className="max-w-[1336px] w-full mx-auto px-[20px]">
         <div className="flex items-center justify-between mb-[60px]">
           <h2 className="text-black font-bold text-[50px] leading-[100%]">
