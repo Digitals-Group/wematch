@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Modal({ isOpen, onClose }) {
-  const [isLogin, setIsLogin] = useState(true); // Login yoki Registerni tanlash
+  const [isLogin, setIsLogin] = useState(true);
 
   if (!isOpen) return null;
 
@@ -25,7 +25,7 @@ export default function Modal({ isOpen, onClose }) {
           <input
             type="text"
             placeholder="Username"
-            className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none" 
+            className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
           />
           <input
             type="password"
@@ -33,15 +33,27 @@ export default function Modal({ isOpen, onClose }) {
             className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none mb-[21px]"
           />
           <div className="mb-[19px]">
-              {isLogin ? "" : (
-                  <div className="flex item-center justify-between">
-                      <div className="flex items-center gap-[9px]">
-                          <input type="checkbox" />
-                          <label className="font-inter font-medium text-2 leading-[100%] text-[#11111F99]" htmlFor="">Remember me</label>
-                      </div>
-                      <Link className="text-[#0073E6] font-inter font-medium text-2 leading-[100%]" to={"/"}>Forgot password?</Link>
-                  </div>
-              )} 
+            {isLogin ? (
+              ""
+            ) : (
+              <div className="flex item-center justify-between">
+                <div className="flex items-center gap-[9px]">
+                  <input type="checkbox" />
+                  <label
+                    className="font-inter font-medium text-2 leading-[100%] text-[#11111F99]"
+                    htmlFor=""
+                  >
+                    Remember me
+                  </label>
+                </div>
+                <Link
+                  className="text-[#0073E6] font-inter font-medium text-2 leading-[100%]"
+                  to={"/"}
+                >
+                  Forgot password?
+                </Link>
+              </div>
+            )}
           </div>
           <button className="bg-[#0073E6] w-full text-white font-bold font-inter py-[7px] rounded-[5px]">
             {isLogin ? "Login" : "Sign Up"}
