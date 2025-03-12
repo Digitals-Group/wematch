@@ -7,9 +7,9 @@ const Valuable = () => {
   return (
     <section className="bg-[#F8F9FA] pt-[180px] pb-[120px] mb-[120px]">
       <div className="max-w-[1336px] w-full mx-auto px-[20px]">
-        <div className="grid grid-cols-2 items-center gap-[60px]">
+        <div className="grid grid-cols-1 items-center gap-[60px] md:grid md:grid-cols-2">
           <div>
-            <img src={cardImage} alt="cardImage" width={636} height={560} />
+            <img className="max-w-[636px] w-full" src={cardImage} alt="cardImage" width={636} height={560} />
           </div>
           <div>
             <h3 className="font-bold text-[50px] leading-[100%] mb-[40px]">
