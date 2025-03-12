@@ -24,7 +24,11 @@ const Header = () => {
           className="text-white md:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
-          {isOpen ? <IoMdClose className="w-6 h-6" /> : <IoMdMenu className="w-6 h-6" />}
+          {isOpen ? (
+            <IoMdClose className="w-6 h-6" />
+          ) : (
+            <IoMdMenu className="w-6 h-6" />
+          )}
         </button>
 
         <ul className="hidden md:flex items-center gap-6">

@@ -2,20 +2,12 @@ import React from "react";
 
 const Item = ({ image, title, text, payment, time, experience, location, handleViewDetails }) => {
   return (
-    <div className="max-w-[416px] w-full bg-white shadow-sm shadow-gray-300 rounded-[20px]">
-      <img
-        className="rounded-tl-[20px] rounded-tr-[20px]"
-        src={image}
-        alt="image"
-      />
-      <div className="pt-[28px] px-[20px] pb-[40px]">
-        <div className="mb-[28px]">
-          <h3 className="text-black font-bold text-[28px] leading-[100%] mb-3">
-            {title}
-          </h3>
-          <p className="text-[#00000099] font-normal text-4 leading-[20px]">
-            {text}
-          </p>
+    <div className="max-w-[416px] w-full bg-white shadow-sm shadow-gray-300 rounded-2xl mx-auto">
+      <img className="rounded-t-2xl w-full" src={image} alt="image" />
+      <div className="p-5">
+        <div className="mb-6">
+          <h3 className="text-black font-bold text-2xl leading-tight mb-2">{title}</h3>
+          <p className="text-gray-600 text-sm">{text}</p>
         </div>
         <input
           type="range"
@@ -30,27 +22,21 @@ const Item = ({ image, title, text, payment, time, experience, location, handleV
              [&::-moz-range-thumb]:bg-orange-500 [&::-moz-range-thumb]:rounded-full"
         />
 
-        <div className="flex items-center justify-between mb-[28px]">
+        <div className="flex flex-wrap justify-between mb-6">
           <div>
-            <h4 className="font-bold text-4 leading-[100%] mb-[8px]">
-              {payment}
-            </h4>
-            <p className="text-[#6C757D] font-medium text-3 leading-[100%]">
-              {experience}
-            </p>
+            <h4 className="font-bold text-lg mb-1">{payment}</h4>
+            <p className="text-gray-500 text-sm">{experience}</p>
           </div>
-
           <div>
-            <p className="text-[#6C757D] font-medium text-3 leading-[100%] mb-[8px]">
-              {time}
-            </p>
-            <p className="text-[#6C757D] font-medium text-3 leading-[100%]">
-              {location}
-            </p>
+            <p className="text-gray-500 text-sm mb-1">{time}</p>
+            <p className="text-gray-500 text-sm">{location}</p>
           </div>
         </div>
 
-        <button className="w-full bg-black text-white uppercase rounded-[12px] py-[20px] font-bold text-4 border-2 border-transparent leading-[100%] hover:bg-white hover:text-black hover:border-black transition" onClick={handleViewDetails}>
+        <button 
+          className="w-full bg-black text-white uppercase rounded-lg py-3 font-bold text-base border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition"
+          onClick={handleViewDetails}
+        >
           View Details
         </button>
       </div>

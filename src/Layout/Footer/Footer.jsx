@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-black pt-[60px] pb-[40px]">
       <div className="max-w-[1336px] w-full mx-auto px-[20px]">
-        <div className="flex justify-between w-full mb-[60px]">
+        <div className="flex justify-between w-full mb-[60px] md:flex flex-wrap">
           <div className="max-w-[303px] w-full">
             <Link className="text-white font-bold text-4 " to={"/"}>
               VolunteerUz

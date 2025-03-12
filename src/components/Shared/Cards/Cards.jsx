@@ -17,48 +17,29 @@ const Cards = () => {
   };
 
   const handleNavigate = () => {
-    navigate("/viewmore")
-  }
+    navigate("/viewmore");
+  };
 
   return (
     <>
-      <section className="mb-[36px]">
-        <div className="max-w-[1336px] w-full mx-auto px-[20px]">
-          <div className="flex items-center justify-between mb-[60px]">
-            <h2 className="text-black font-bold text-[50px] leading-[100%]">
+      <section className="mb-9 px-5 md:px-10">
+        <div className="max-w-[1336px] w-full mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-10">
+            <h2 className="text-black font-bold text-4xl md:text-5xl leading-tight text-center md:text-left">
               Opportunities
             </h2>
-            <button className="border-2 border-black py-[20px] px-[54px] rounded-[12px] uppercase font-bold text-4 leading-[100%] hover:bg-black hover:text-white transition" onClick={handleNavigate}>
-              view More
+            <button 
+              className="mt-4 md:mt-0 border-2 border-black py-4 px-10 rounded-lg uppercase font-bold text-base md:text-lg hover:bg-black hover:text-white transition"
+              onClick={handleNavigate}
+            >
+              View More
             </button>
           </div>
 
-          <div className="grid grid-cols-3 gap-y-[15px]">
-            {cardData?.map((item) => {
-              const {
-                id,
-                image,
-                title,
-                text,
-                payment,
-                time,
-                experience,
-                location,
-              } = item;
-              return (
-                <Item
-                  key={id}
-                  image={image}
-                  title={title}
-                  text={text}
-                  payment={payment}
-                  time={time}
-                  experience={experience}
-                  location={location}
-                  handleViewDetails={handleViewDetails}
-                />
-              );
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {cardData?.map((item) => (
+              <Item key={item.id} {...item} handleViewDetails={handleViewDetails} />
+            ))}
           </div>
         </div>
       </section>
