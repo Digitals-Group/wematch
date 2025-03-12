@@ -30,7 +30,7 @@ const Valuable = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="text-[red] flex items-center gap-[10px] cursor-pointer">
                 <img src={profileIcon} alt="" />
                 <div>

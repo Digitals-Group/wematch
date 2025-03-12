@@ -34,8 +34,8 @@ const Hero = () => {
             modules={[Scrollbar]}
             className="mySwiper"
           >
-            {heroData?.map((item) => (
-              <SwiperSlide key={item?.title}>
+            {heroData?.map((item, id) => (
+              <SwiperSlide key={id}>
                 <h2 className="text-black font-bold text-[60px] leading-[100%] mb-[40px]">
                   {item?.title}
                 </h2>

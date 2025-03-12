@@ -15,6 +15,10 @@ const Header = () => {
       name: "About Us",
       to: "/aboutus",
     },
+    {
+      name: "Profile",
+      to: "/profile",
+    },
   ];
   return (
     <header className="bg-black py-6">
