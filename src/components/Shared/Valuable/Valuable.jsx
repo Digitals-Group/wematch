@@ -18,7 +18,7 @@ const Valuable = () => {
               Gain valuable experience.
             </h3>
             <div>
-              <div className="grid grid-cols-2 items-center gap-[24px] mb-[48px]">
+              <div className="grid grid-cols-1 items-center gap-[24px] mb-[48px] md:grid md:grid-cols-2">
                 {data?.map((item, index) => (
                   <div key={index}>
                     <p className="mb-3 font-normal text-4 leading-[28px font-inter text-[#00000099]">
