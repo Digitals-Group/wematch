@@ -1,17 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { IoMdMenu } from "react-icons/io";
+import Modal from "../../components/ui/Modal/Modal";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "Opportunities", to: "/opportunity" },
     { name: "About Us", to: "/aboutus" },
-    { name: "Profile", to: "/profile" },
   ];
+
+  const handleNavigateProfile = () => {
+    if (!isLogged) {
+      navigate("/profile");
+    } else {
+      setIsModalOpen(true);
+    }
+  };
 
   return (
     <header className="bg-black py-4">
@@ -39,6 +50,14 @@ const Header = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <button
+              onClick={handleNavigateProfile}
+              className="text-[#FFFFFF99] font-inter"
+            >
+              Profile
+            </button>
+          </li>
         </ul>
       </div>
 
@@ -56,9 +75,18 @@ const Header = () => {
                 </Link>
               </li>
             ))}
+             <li>
+            <button
+              onClick={handleNavigateProfile}
+              className="text-white block p-2"
+            >
+              Profile
+            </button>
+          </li>
           </ul>
         </div>
       )}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>
   );
 };

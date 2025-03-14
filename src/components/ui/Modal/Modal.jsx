@@ -7,7 +7,7 @@ export default function Modal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex items-center z-50 justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 shadow-lg w-96">
         <h2 className="text-[#11111F] font-bold text-[17px] leading-[100%] mb-2">
           Welcome to <span className="text-[#0073E6]">VolunteerUz</span>
