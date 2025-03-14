@@ -75,14 +75,14 @@ const Header = () => {
                 </Link>
               </li>
             ))}
-             <li>
-            <button
-              onClick={handleNavigateProfile}
-              className="text-white block p-2"
-            >
-              Profile
-            </button>
-          </li>
+            <li>
+              <button
+                onClick={handleNavigateProfile}
+                className="text-white block p-2"
+              >
+                Profile
+              </button>
+            </li>
           </ul>
         </div>
       )}

@@ -1,6 +1,8 @@
 import React from "react";
 import { profileData } from "../../api/profile";
 import Bio from "../../components/Shared/Bio/Bio";
+import Certificate from "../../components/Shared/Certificate/Certificate";
+import Skills from "../../components/Shared/Skills/Skills";
 
 const Profile = () => {
   return (
@@ -67,6 +69,8 @@ const Profile = () => {
           </div>
         </div>
         <Bio />
+        <Skills />
+        <Certificate />
       </div>
     </section>
   );
