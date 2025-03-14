@@ -4,7 +4,7 @@ import Title from "../Title/Title";
 const Bio = () => {
   return (
     <section className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
-      <Title />
+      <Title title={"Bio"}/>
       <p className="text-[#313D44] font-inter font-normal text-[18px] leading-[28px]">
         V Velit est quiquia tempora quiquia est quisquam. Ipsum consectetur
         quaerat non consectetur non amet. Velit dolorem ut consectetur ut ipsum

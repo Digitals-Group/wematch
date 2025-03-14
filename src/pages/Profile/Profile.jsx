@@ -7,7 +7,7 @@ import Skills from "../../components/Shared/Skills/Skills";
 const Profile = () => {
   return (
     <section className="pt-[84px] pb-[180px] bg-[#F4F5F6]">
-      <div className="max-w-[1051px] w-full mx-auto">
+      <div className="max-w-[1091px] w-full mx-auto px-[20px]">
         <div className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
           <div className="flex gap-[210px] mb-6">
             <img
