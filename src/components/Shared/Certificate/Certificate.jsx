@@ -8,7 +8,7 @@ const Certificate = () => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <section className="bg-white shadow-sm shadow-gray-300 p-6">
+    <section className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
       <Title title={"Certificates"} />
       {Certificates?.slice(0, showMore ? Certificates.length : 2).map(
         (item, id) => (
@@ -39,7 +39,7 @@ const Certificate = () => {
           <p className="text-[#313D44] font-inter font-normal text-[16px] leading-[24px]">
             {showMore ? "Show less" : "Show more"}
           </p>
-          <img src={rightIcon} alt="" />
+          <img src={rightIcon} alt="rightIcon" width={28} height={16} />
         </div>
       )}
     </section>
