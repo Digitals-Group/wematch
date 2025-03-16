@@ -27,11 +27,27 @@ export default function Modal({ isOpen, onClose }) {
             placeholder="Username"
             className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
           />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none mb-[21px]"
-          />
+          {isLogin && (
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
+            />
+          )}
+          {!isLogin && (
+            <input
+              type="password"
+              placeholder="Create password"
+              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
+            />
+          )}
+          {!isLogin && (
+            <input
+              type="password"
+              placeholder="Confirm password"
+              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none mb-[21px]"
+            />
+          )}
           <div className="mb-[19px]">
             {isLogin ? (
               ""

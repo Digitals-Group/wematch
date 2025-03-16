@@ -12,12 +12,12 @@ const Header = () => {
 
   const navLinks = [
     { name: "Home", to: "/" },
-    { name: "Opportunities", to: "/opportunity" },
+    { name: "Opportunities", to: "/viewmore" },
     { name: "About Us", to: "/aboutus" },
   ];
 
   const handleNavigateProfile = () => {
-    if (!isLogged) {
+    if (isLogged) {
       navigate("/profile");
     } else {
       setIsModalOpen(true);
