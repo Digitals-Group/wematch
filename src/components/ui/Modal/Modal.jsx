@@ -31,7 +31,7 @@ export default function Modal({ isOpen, onClose }) {
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
+              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none mb-[21px]"
             />
           )}
           {!isLogin && (
@@ -45,11 +45,11 @@ export default function Modal({ isOpen, onClose }) {
             <input
               type="password"
               placeholder="Confirm password"
-              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none mb-[21px]"
+              className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
             />
           )}
           <div className="mb-[19px]">
-            {isLogin ? (
+            {!isLogin ? (
               ""
             ) : (
               <div className="flex item-center justify-between">

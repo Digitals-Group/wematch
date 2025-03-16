@@ -17,7 +17,7 @@ const Header = () => {
   ];
 
   const handleNavigateProfile = () => {
-    if (isLogged) {
+    if (!isLogged) {
       navigate("/profile");
     } else {
       setIsModalOpen(true);
