@@ -14,9 +14,10 @@ const Register = ({ onSwitch }) => {
     const data = {
       name: name,
       email: email,
-      createPassword: createPassword,
-      confirmPassword: confirmPassword,
+      password: createPassword,
+      conifirmPassword: confirmPassword,
     };
+    console.log(data);
 
     try {
       const res = await apiRoot.post("/auth/register", data, {

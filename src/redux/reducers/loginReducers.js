@@ -2,7 +2,7 @@ import { LOGIN_ADMIN } from "../action/login";
 
 const initialState = {
   admin: null,
-  accessToken: localStorage.getItem("accesstoken") || null,
+  accessToken: localStorage.getItem("accessToken") || null,
   refreshToken: localStorage.getItem("refreshToken") || null,
   isLogged: false,
 };
@@ -11,12 +11,12 @@ const loginReducers = (state = initialState, action) => {
     console.log(action);
   switch (action.type) {
     case LOGIN_ADMIN:
-      localStorage.setItem("accesstoken", action.payload);
-      localStorage.setItem("refreshToken", action.payload);
+      localStorage.setItem("accessToken", action.payload.accessToken);
+      localStorage.setItem("refreshToken", action.payload.refreshToken);
       return {
         ...state,
-        accessToken: action.payload,
-        refreshToken: action.payload,
+        accessToken: action.payload.accessToken,
+        refreshToken: action.payload.refreshToken,
       };
       default:
           return state

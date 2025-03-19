@@ -3,9 +3,14 @@ import { useState } from "react";
 import { skillsData } from "../../../api/skillsData";
 import Title from "../Title/Title";
 import rightIcon from "../../../assets/svg/right.svg";
+import { useEffect } from "react";
 
 const Education = () => {
   const [showMore, setShowMore] = useState(false);
+  const [ get, setGet ] = useState([])
+  useEffect(() => {
+      
+  }, [])
   return (
     <section className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
       <Title title={"Education"} />

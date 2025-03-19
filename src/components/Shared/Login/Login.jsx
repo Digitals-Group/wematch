@@ -1,18 +1,51 @@
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { apiRoot } from "../../../api/apiRoot";
+import { LOGIN_ADMIN } from "../../../redux/action/login";
 
-const Login = () => {
+const Login = ({onClose}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const res = await apiRoot.post("/auth/login", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      console.log(res?.data);
+      setEmail("");
+      setPassword("");
+      dispatch({type: LOGIN_ADMIN, payload: res?.data})
+        onClose();  
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
-    <form className="mt-4">
+    <form className="mt-4" onSubmit={handleLogin}>
       <input
-        type="text"
-        placeholder="Username"
+        type="email"
+        placeholder="Email"
         className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
         className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
+        onChange={(e) => setPassword(e.target.value)}
       />
       <div className="mb-[19px] flex justify-between items-center">
         <div className="flex items-center gap-[9px]">
