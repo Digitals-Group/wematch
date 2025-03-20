@@ -4,11 +4,17 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { apiRoot } from "../../../api/apiRoot";
 import { LOGIN_ADMIN } from "../../../redux/action/login";
+import { LuEye } from "react-icons/lu";
+import { FaRegEyeSlash } from "react-icons/fa";
 
-const Login = ({onClose}) => {
+const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch()
+  const [isVisiblePassword, setIsVisiblePassword] = useState(true);
+  const dispatch = useDispatch();
+  const handlePasswordVisible = () => {
+    setIsVisiblePassword(!isVisiblePassword);
+  };
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -27,14 +33,14 @@ const Login = ({onClose}) => {
       console.log(res?.data);
       setEmail("");
       setPassword("");
-      dispatch({type: LOGIN_ADMIN, payload: res?.data})
-        onClose();  
+      dispatch({ type: LOGIN_ADMIN, payload: res?.data });
+      onClose();
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <form className="mt-4" onSubmit={handleLogin}>
+    <form className="mt-4 relative" onSubmit={handleLogin}>
       <input
         type="email"
         placeholder="Email"
@@ -42,11 +48,29 @@ const Login = ({onClose}) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
-        type="password"
+        type={isVisiblePassword ? "password" : "text"}
         placeholder="Password"
-        className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none"
+        className="w-full p-2 border-b border-[#130B544D] mb-2 outline-none relative"
         onChange={(e) => setPassword(e.target.value)}
       />
+      {password?.length > 0 ? (
+        isVisiblePassword ? (
+          <LuEye
+            className="absolute top-[60px] right-[15px] w-[20px] h-[20px]"
+            onClick={handlePasswordVisible}
+          />
+        ) : (
+          <FaRegEyeSlash
+            className="absolute top-[60px] right-[15px] w-[20px] h-[20px]"
+            onClick={handlePasswordVisible}
+          />
+        )
+      ) : (
+        <FaRegEyeSlash
+          className="absolute top-[60px] right-[15px] w-[20px] h-[20px]"
+          onClick={handlePasswordVisible}
+        />
+      )}
       <div className="mb-[19px] flex justify-between items-center">
         <div className="flex items-center gap-[9px]">
           <input type="checkbox" />
