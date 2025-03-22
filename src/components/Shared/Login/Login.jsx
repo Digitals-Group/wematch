@@ -7,7 +7,7 @@ import { LOGIN_ADMIN } from "../../../redux/action/login";
 import { LuEye } from "react-icons/lu";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-const Login = ({ onClose }) => {
+const Login = ({ onClose, onForgotPassword }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isVisiblePassword, setIsVisiblePassword] = useState(true);
@@ -76,9 +76,9 @@ const Login = ({ onClose }) => {
           <input type="checkbox" />
           <label className="text-[#11111F99]">Remember me</label>
         </div>
-        <Link className="text-[#0073E6]" to={"/forgot-password"}>
+        <p className="text-[#0073E6]" onClick={onForgotPassword}>
           Forgot password?
-        </Link>
+        </p>
       </div>
       <button className="bg-[#0073E6] w-full text-white font-bold py-[7px] rounded-[5px]">
         Login
