@@ -1,12 +1,24 @@
 import React from "react";
 
-const Item = ({ image, title, text, payment, time, experience, location, handleViewDetails }) => {
+const Item = ({
+  image,
+  title,
+  text,
+  payment,
+  time,
+  experience,
+  location,
+  handleViewDetails,
+  id,
+}) => {
   return (
     <div className="max-w-[416px] w-full bg-white shadow-sm shadow-gray-300 rounded-2xl mx-auto">
       <img className="rounded-t-2xl w-full" src={image} alt="image" />
       <div className="p-5">
         <div className="mb-6">
-          <h3 className="text-black font-bold text-2xl leading-tight mb-2">{title}</h3>
+          <h3 className="text-black font-bold text-2xl leading-tight mb-2">
+            {title}
+          </h3>
           <p className="text-gray-600 text-sm">{text}</p>
         </div>
         <input
@@ -33,7 +45,7 @@ const Item = ({ image, title, text, payment, time, experience, location, handleV
           </div>
         </div>
 
-        <button 
+        <button
           className="w-full bg-black text-white uppercase rounded-lg py-3 font-bold text-base border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition"
           onClick={handleViewDetails}
         >

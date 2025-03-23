@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ForgotPassword from "../../Shared/ForgotPassword/ForgotPassword";
 import Login from "../../Shared/Login/Login";
 import OptModal from "../../Shared/OptModal/OptModal";
@@ -12,8 +12,16 @@ export default function Modal({ isOpen, onClose }) {
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
   const [isUpdatePassword, setIsUpdatePassword] = useState(false);
+  const [ token, setToken ] = useState(false) 
+
+
+  // useEffect(() => {
+  //   const userToken = localStorage.getItem("accessToken"); // Tokenni localStorage dan olish
+  //   setToken(userToken);
+  // }, []);
 
   if (!isOpen) return null;
+
 
   return (
     <div className="fixed inset-0 flex items-center z-50 justify-center bg-black bg-opacity-50">
