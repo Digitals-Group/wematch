@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Item = ({
   image,
@@ -15,12 +16,14 @@ const Item = ({
     <div className="max-w-[416px] w-full bg-white shadow-sm shadow-gray-300 rounded-2xl mx-auto">
       <img className="rounded-t-2xl w-full" src={image} alt="image" />
       <div className="p-5">
-        <div className="mb-6">
-          <h3 className="text-black font-bold text-2xl leading-tight mb-2">
-            {title}
-          </h3>
-          <p className="text-gray-600 text-sm">{text}</p>
-        </div>
+        <Link to={`/cardsid/${id}`} target="_blank">
+          <div className="mb-6">
+            <h3 className="text-black font-bold text-2xl leading-tight mb-2">
+              {title}
+            </h3>
+            <p className="text-gray-600 text-sm">{text}</p>
+          </div>
+        </Link>
         <input
           type="range"
           className="w-full h-3 bg-gray-100 rounded-lg appearance-none cursor-pointer

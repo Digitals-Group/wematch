@@ -12,7 +12,7 @@ export default function Modal({ isOpen, onClose }) {
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [isResetPassword, setIsResetPassword] = useState(false);
   const [isUpdatePassword, setIsUpdatePassword] = useState(false);
-  const [ token, setToken ] = useState(false) 
+  // const [ token, setToken ] = useState(false) 
 
 
   // useEffect(() => {
