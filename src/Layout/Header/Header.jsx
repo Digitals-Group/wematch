@@ -28,7 +28,7 @@ const Header = () => {
     <header className="bg-black py-4">
       <div className="max-w-[1336px] w-full mx-auto px-5 flex items-center justify-between">
         <Link className="text-white font-bold text-xl" to={"/"}>
-          VolunteerUz
+          WeMatch
         </Link>
 
         <button

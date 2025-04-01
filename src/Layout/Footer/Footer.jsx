@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="flex justify-between w-full mb-[60px] md:flex flex-wrap">
           <div className="max-w-[303px] w-full">
             <Link className="text-white font-bold text-4 " to={"/"}>
-              VolunteerUz
+              WeMatch
             </Link>
 
             <div className="mb-3 mt-4">
