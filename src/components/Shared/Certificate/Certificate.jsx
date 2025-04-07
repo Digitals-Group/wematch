@@ -16,16 +16,28 @@ const Certificate = () => {
             <img src={item?.certificateImage} alt="" />
             <div>
               <div className="mb-2">
-                <span className="text-[#313D44] font-inter font-normal text-[14px]leading-[20px] mb-[4px]">Project</span>
-                <h4 className="text-[#1D1C1C] font-inter font-normal text-[20px]leading-[28px]">{item?.certificateProject}</h4>
+                <span className="text-[#313D44] font-inter font-normal text-[14px]leading-[20px] mb-[4px]">
+                  Project
+                </span>
+                <h4 className="text-[#1D1C1C] font-inter font-normal text-[20px]leading-[28px]">
+                  {item?.certificateProject}
+                </h4>
               </div>
               <div className="mb-2">
-                <span className="text-[#313D44] font-inter font-normal text-[14px]leading-[20px] mb-[4px]">Organization</span>
-                <h4 className="text-[#1D1C1C] font-inter font-normal text-[20px]leading-[28px]">{item?.certificateOrg}</h4>
+                <span className="text-[#313D44] font-inter font-normal text-[14px]leading-[20px] mb-[4px]">
+                  Organization
+                </span>
+                <h4 className="text-[#1D1C1C] font-inter font-normal text-[20px]leading-[28px]">
+                  {item?.certificateOrg}
+                </h4>
               </div>
               <div>
-                <span className="text-[#313D44] font-inter font-normal text-[14px]leading-[20px] mb-[4px]">On</span>
-                <h4 className="text-[#1D1C1C] font-inter font-normal text-[20px]leading-[28px]">{item?.certificateDate}</h4>
+                <span className="text-[#313D44] font-inter font-normal text-[14px]leading-[20px] mb-[4px]">
+                  On
+                </span>
+                <h4 className="text-[#1D1C1C] font-inter font-normal text-[20px]leading-[28px]">
+                  {item?.certificateDate}
+                </h4>
               </div>
             </div>
           </div>
