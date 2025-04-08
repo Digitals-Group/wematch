@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { profileData } from "../../api/profile";
 import Bio from "../../components/Shared/Bio/Bio";
 import Certificate from "../../components/Shared/Certificate/Certificate";

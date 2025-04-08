@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { apiRoot } from "../../../api/apiRoot";
-import { educationData } from "../../../api/education";
 import rightIcon from "../../../assets/svg/right.svg";
 import Title from "../Title/Title";
 
@@ -9,7 +8,6 @@ const Skills = () => {
   const [showMore, setShowMore] = useState(false);
   const [getSkills, setGetSkills] = useState([]);
   const token = localStorage.getItem("accessToken");
-  console.log(getSkills);
 
   useEffect(() => {
     const fetchSkills = async () => {
