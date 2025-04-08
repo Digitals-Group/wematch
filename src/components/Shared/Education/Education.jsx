@@ -38,7 +38,10 @@ const Education = () => {
 
   return (
     <section className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
-      <Title title={"Education"} />
+      <div className="mb-6 flex items-center justify-between">
+        <Title title={"Education"} />
+        <button>Add education</button>
+      </div>
       <div>
         {education?.map(
           ({

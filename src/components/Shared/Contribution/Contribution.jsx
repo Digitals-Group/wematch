@@ -38,7 +38,10 @@ const Contribution = () => {
   };
   return (
     <section className="bg-white shadow-sm shadow-gray-300 p-6">
-      <Title title={"Contribution"} />
+      <div className="mb-6 flex items-center justify-between">
+        <Title title={"Contribution"} />
+        <button>Add contribution</button>
+      </div>
       <div>
         {contribution?.map(
           ({
