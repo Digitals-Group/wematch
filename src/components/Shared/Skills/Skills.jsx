@@ -13,8 +13,10 @@ const Skills = () => {
   const [getSkills, setGetSkills] = useState([]);
   const [skillName, setSkillName] = useState("");
   const [level, setLevel] = useState("");
-  const token = localStorage.getItem("accessToken");
   const [post, setPost] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState(null);
+  const token = localStorage.getItem("accessToken");
 
   const fetchSkills = async () => {
     try {
@@ -50,6 +52,43 @@ const Skills = () => {
     } catch (err) {
       console.log(err);
       toast.error("Failed to delete");
+    }
+  };
+
+  const editModal = (id) => {
+    const selectedSkill = getSkills.find((item) => item.id === id);
+    if (selectedSkill) {
+      setSkillName(selectedSkill.skill_name);
+      setLevel(selectedSkill.level);
+      setEdit(true);
+      setEditId(id);
+    }
+  };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    const data = {
+      skill_name: skillName,
+      level: level,
+    };
+    try {
+      const res = await apiRoot.patch(`/skills/${editId}`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res?.data);
+      setEdit(false);
+      setSkillName("");
+      setLevel("");
+      setEditId(null);
+      fetchSkills();
+      toast.success("Successfully edited");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to edit");
     }
   };
 
@@ -108,7 +147,7 @@ const Skills = () => {
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <button>
+                <button onClick={() => editModal(id)}>
                   <MdEdit className="w-4 h-4" />
                 </button>
                 <button onClick={() => handleDelete(id)}>
@@ -158,20 +197,41 @@ const Skills = () => {
           </div>
         </SkillModal>
       )}
+
+      {edit && (
+        <SkillModal close={() => setEdit(false)}>
+          <div className="bg-white rounded-[8px] p-4">
+            <h1 className="mb-3 font-semibold text-[25px]">Edit skills</h1>
+            <form className="flex flex-col gap-2" onSubmit={handleEdit}>
+              <div className="flex flex-col">
+                <label className="mb-2">Enter skill</label>
+                <input
+                  type="text"
+                  placeholder="Enter skill"
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  value={skillName}
+                  onChange={(e) => setSkillName(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">Level</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="text"
+                  placeholder="Level"
+                  value={level}
+                  onChange={(e) => setLevel(e.target.value)}
+                />
+              </div>
+              <button className="bg-black p-2 rounded-[8px] text-white">
+                submit
+              </button>
+            </form>
+          </div>
+        </SkillModal>
+      )}
     </>
   );
 };
 
 export default Skills;
-// {educationData
-// ?.slice(0, showMore ? educagtionData.length : 3)
-// .map((edu, id) => (
-//   <div className="mb-6" key={id}>
-//     <h3 className="text-[#1D1C1C] font-inter font-medium text-[24px] leading-[32px] mb-2">
-//       {edu?.title}
-//     </h3>
-//     <p className="text-[#313D44] font-inter font-normal text-[16px] leading-6">
-//       {edu?.text}
-//     </p>
-//   </div>
-// ))}
