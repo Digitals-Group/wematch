@@ -4,6 +4,8 @@ import Title from "../Title/Title";
 import rightIcon from "../../../assets/svg/right.svg";
 import { useEffect } from "react";
 import { apiRoot } from "../../../api/apiRoot";
+import { IoAddOutline } from "react-icons/io5";
+import { MdEdit, MdDelete } from "react-icons/md";
 
 const Education = () => {
   const [showMore, setShowMore] = useState(false);
@@ -40,7 +42,9 @@ const Education = () => {
     <section className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
       <div className="mb-6 flex items-center justify-between">
         <Title title={"Education"} />
-        <button>Add education</button>
+        <button>
+          <IoAddOutline className="w-6 h-6" />
+        </button>
       </div>
       <div>
         {education?.map(
@@ -52,28 +56,37 @@ const Education = () => {
             start_date,
             end_date,
           }) => (
-            <div className="mb-6" key={id}>
-              <h3 className="font-inter font-normal text-black leading-[32px] text-[24px] mb-2">
-                {field_of_study}
-              </h3>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[#1D1C1C] font-inter font-normal text-4 leading-6">
-                  {institution}
-                </span>
-                <p className="text-[#313D44] font-inter font-normal text-[12px] leading-4">
-                  {`${formatDate(start_date)} - ${formatDate(end_date)}`}
+            <div className="mb-6 flex items-center justify-between" key={id}>
+              <div>
+                <h3 className="font-inter font-normal text-black leading-[32px] text-[24px] mb-2">
+                  {field_of_study}
+                </h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-[#1D1C1C] font-inter font-normal text-4 leading-6">
+                    {institution}
+                  </span>
+                  <p className="text-[#313D44] font-inter font-normal text-[12px] leading-4">
+                    {`${formatDate(start_date)} - ${formatDate(end_date)}`}
+                  </p>
+                </div>
+                <p className="text-black font-inter font-normal text-[12px] leading-[100%]">
+                  {description}
                 </p>
               </div>
-              <p className="text-black font-inter font-normal text-[12px] leading-[100%]">
-                {description}
-              </p>
+
+              <div className="flex items-center gap-2">
+                <button>
+                  <MdEdit className="w-4 h-4" />
+                </button>
+                <button>
+                  <MdDelete className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           )
         )}
       </div>
-      <div
-        className="flex items-center justify-between cursor-pointer"
-      >
+      <div className="flex items-center justify-between cursor-pointer">
         <p className="text-[#313D44] font-inter font-normal text-[16px] leading-[24px]">
           {showMore ? "Show less" : "Show more"}
         </p>

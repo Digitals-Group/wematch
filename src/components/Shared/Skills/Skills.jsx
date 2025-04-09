@@ -5,6 +5,8 @@ import rightIcon from "../../../assets/svg/right.svg";
 import SkillModal from "../../ui/Modal/skill-modal";
 import Title from "../Title/Title";
 import { IoAddOutline } from "react-icons/io5";
+import { MdEdit, MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const Skills = () => {
   const [showMore, setShowMore] = useState(false);
@@ -33,6 +35,24 @@ const Skills = () => {
     fetchSkills();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const res = await apiRoot.delete(`/skills/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res?.data);
+      fetchSkills();
+      toast.success("Successfully deleted");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to delete");
+    }
+  };
+
   const handleSkillsPost = async (e) => {
     e.preventDefault();
 
@@ -42,7 +62,7 @@ const Skills = () => {
     };
 
     try {
-      const res = apiRoot.post("/skills", data, {
+      const res = await apiRoot.post("/skills", data, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -54,8 +74,10 @@ const Skills = () => {
       setLevel("");
       fetchSkills();
       setPost(false);
+      toast.success("Successfully posted");
     } catch (err) {
       console.log(err);
+      toast.error("Failed to post");
     }
   };
 
@@ -68,8 +90,7 @@ const Skills = () => {
             className="flex items-center gap-2"
             onClick={() => setPost(true)}
           >
-            <IoAddOutline />
-            Add skills
+            <IoAddOutline className="w-6 h-6" />
           </button>
         </div>
         <div className="mb-[24px]">
@@ -86,9 +107,13 @@ const Skills = () => {
                   {level}
                 </p>
               </div>
-              <div>
-                <button>Delete</button>
-                <button>Update</button>
+              <div className="flex items-center gap-2">
+                <button>
+                  <MdEdit className="w-4 h-4" />
+                </button>
+                <button onClick={() => handleDelete(id)}>
+                  <MdDelete className="w-4 h-4" />
+                </button>
               </div>
             </div>
           ))}
