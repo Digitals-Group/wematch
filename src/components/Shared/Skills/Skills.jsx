@@ -10,12 +10,19 @@ import { toast } from "react-toastify";
 
 const Skills = () => {
   const [showMore, setShowMore] = useState(false);
+
   const [getSkills, setGetSkills] = useState([]);
   const [skillName, setSkillName] = useState("");
   const [level, setLevel] = useState("");
+  // post
   const [post, setPost] = useState(false);
+  // edit
   const [edit, setEdit] = useState(false);
   const [editId, setEditId] = useState(null);
+
+  //delete
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const token = localStorage.getItem("accessToken");
 
   const fetchSkills = async () => {
@@ -37,9 +44,9 @@ const Skills = () => {
     fetchSkills();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     try {
-      const res = await apiRoot.delete(`/skills/${id}`, {
+      const res = await apiRoot.delete(`/skills/${deleteId}`, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -49,6 +56,7 @@ const Skills = () => {
       console.log(res?.data);
       fetchSkills();
       toast.success("Successfully deleted");
+      setOpenDeleteModal(false);
     } catch (err) {
       console.log(err);
       toast.error("Failed to delete");
@@ -63,6 +71,11 @@ const Skills = () => {
       setEdit(true);
       setEditId(id);
     }
+  };
+
+  const deleteModalId = (id) => {
+    setDeleteId(id);
+    setOpenDeleteModal(true);
   };
 
   const handleEdit = async (e) => {
@@ -150,7 +163,7 @@ const Skills = () => {
                 <button onClick={() => editModal(id)}>
                   <MdEdit className="w-4 h-4" />
                 </button>
-                <button onClick={() => handleDelete(id)}>
+                <button onClick={() => deleteModalId(id)}>
                   <MdDelete className="w-4 h-4" />
                 </button>
               </div>
@@ -227,6 +240,18 @@ const Skills = () => {
                 submit
               </button>
             </form>
+          </div>
+        </SkillModal>
+      )}
+
+      {openDeleteModal && (
+        <SkillModal close={() => setOpenDeleteModal(false)}>
+          <div className="bg-white rounded-[8px] p-4">
+            <h1 className="mb-3 font-semibold text-[25px]">Delete skills</h1>
+            <div className="flex items-center justify-between">
+              <button onClick={handleDelete}>Delete</button>
+              <button onClick={() => setOpenDeleteModal(false)}>Cencel</button>
+            </div>
           </div>
         </SkillModal>
       )}
