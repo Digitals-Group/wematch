@@ -6,9 +6,11 @@ import { useEffect } from "react";
 import { apiRoot } from "../../../api/apiRoot";
 import { IoAddOutline } from "react-icons/io5";
 import { MdEdit, MdDelete } from "react-icons/md";
+import SkillModal from "../../ui/Modal/skill-modal";
 
 const Contribution = () => {
   const [showMore, setShowMore] = useState(false);
+  const [ openPostContribution, setOpenPostContribution ] = useState(false)
   const [contribution, setContribution] = useState([]);
   const token = localStorage.getItem("accessToken");
 
@@ -38,10 +40,11 @@ const Contribution = () => {
     });
   };
   return (
-    <section className="bg-white shadow-sm shadow-gray-300 p-6">
+  <>
+     <section className="bg-white shadow-sm shadow-gray-300 p-6">
       <div className="mb-6 flex items-center justify-between">
         <Title title={"Contribution"} />
-        <button>
+        <button onClick={() => setOpenPostContribution(true)}>
           <IoAddOutline className="w-6 h-6" />
         </button>
       </div>
@@ -94,6 +97,14 @@ const Contribution = () => {
         <img src={rightIcon} alt="rightIcon" width={28} height={16} />
       </div>
     </section>
+    {openPostContribution && (
+      <SkillModal close={() => setOpenPostContribution(false)}>
+          <div className="bg-white rounded-[8px] p-4">
+            <h1 className="mb-3 font-semibold text-[25px]">Add contribution</h1>
+          </div>
+      </SkillModal>
+    )}
+  </>
   );
 };
 

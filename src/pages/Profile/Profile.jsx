@@ -10,35 +10,35 @@ import Education from "../../components/Shared/Education/Education";
 import Skills from "../../components/Shared/Skills/Skills";
 
 const Profile = () => {
-  const [ profileUsers, setProfileUsers ] = useState(null)
+  const [profileUsers, setProfileUsers] = useState(null);
   const token = localStorage.getItem("accessToken");
   useEffect(() => {
     const getProfile = async () => {
-        try {
-          const res = await apiRoot.get("/users/me", {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          })
-          const user = res?.data?.data
-          console.log(user);
-          setProfileUsers({
-            profileImg: user?.image,
-            profileName: user?.name,
-            profileEmail: user?.email,
-            profileAge: "N/A",
-            profileGender: "N/A",
-            profileLocation: "N/A",
-          })
-        }catch (err) {
-          console.log(err);
-        }
-    }
+      try {
+        const res = await apiRoot.get("/users/me", {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const user = res?.data?.data;
+        console.log(user);
+        setProfileUsers({
+          profileImg: user?.image,
+          profileName: user?.name,
+          profileEmail: user?.email,
+          profileAge: "N/A",
+          profileGender: "N/A",
+          profileLocation: "N/A",
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
-    getProfile()
-  }, [])
+    getProfile();
+  }, []);
   return (
     <section className="pt-[84px] pb-[180px] bg-[#F4F5F6]">
       <div className="max-w-[1091px] w-full mx-auto px-[20px]">
