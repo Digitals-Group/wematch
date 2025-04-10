@@ -1,5 +1,7 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { apiRoot } from "../../api/apiRoot";
 import { profileData } from "../../api/profile";
 import Bio from "../../components/Shared/Bio/Bio";
 import Certificate from "../../components/Shared/Certificate/Certificate";
@@ -8,13 +10,42 @@ import Education from "../../components/Shared/Education/Education";
 import Skills from "../../components/Shared/Skills/Skills";
 
 const Profile = () => {
+  const [ profileUsers, setProfileUsers ] = useState(null)
+  const token = localStorage.getItem("accessToken");
+  useEffect(() => {
+    const getProfile = async () => {
+        try {
+          const res = await apiRoot.get("/users/me", {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          const user = res?.data?.data
+          console.log(user);
+          setProfileUsers({
+            profileImg: user?.image,
+            profileName: user?.name,
+            profileEmail: user?.email,
+            profileAge: "N/A",
+            profileGender: "N/A",
+            profileLocation: "N/A",
+          })
+        }catch (err) {
+          console.log(err);
+        }
+    }
+
+    getProfile()
+  }, [])
   return (
     <section className="pt-[84px] pb-[180px] bg-[#F4F5F6]">
       <div className="max-w-[1091px] w-full mx-auto px-[20px]">
         <div className="bg-white shadow-sm shadow-gray-300 p-6 mb-4">
           <div className="flex gap-[210px] mb-6">
             <img
-              src={profileData?.profileImg}
+              src={profileUsers?.profileImg}
               alt="profileImg"
               width={146}
               height={146}
@@ -30,7 +61,7 @@ const Profile = () => {
                 Name
               </span>
               <h3 className="text-[#313D44] font-inter font-semibold text-[20px] leading-[28px]">
-                {profileData?.profileName}
+                {profileUsers?.profileName}
               </h3>
             </div>
             <div>
@@ -38,7 +69,7 @@ const Profile = () => {
                 Age
               </span>
               <h3 className="text-[#313D44] font-inter font-semibold text-[20px] leading-[28px]">
-                {profileData?.profileAge}
+                {profileUsers?.profileAge}
               </h3>
             </div>
           </div>
@@ -49,7 +80,7 @@ const Profile = () => {
                 Gender
               </span>
               <h3 className="text-[#313D44] font-inter font-semibold text-[20px] leading-[28px]">
-                {profileData?.profileGender}
+                {profileUsers?.profileGender}
               </h3>
             </div>
             <div>
@@ -57,7 +88,7 @@ const Profile = () => {
                 Email
               </span>
               <h3 className="text-[#313D44] font-inter font-semibold text-[20px] leading-[28px]">
-                {profileData?.profileEmail}
+                {profileUsers?.profileEmail}
               </h3>
             </div>
           </div>
@@ -67,7 +98,7 @@ const Profile = () => {
               Location
             </span>
             <h3 className="text-[#313D44] font-inter font-semibold text-[20px] leading-[28px]">
-              {profileData?.profileLocation}
+              {profileUsers?.profileLocation}
             </h3>
           </div>
         </div>
