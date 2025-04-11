@@ -7,30 +7,76 @@ import { apiRoot } from "../../../api/apiRoot";
 import { IoAddOutline } from "react-icons/io5";
 import { MdEdit, MdDelete } from "react-icons/md";
 import SkillModal from "../../ui/Modal/skill-modal";
+import { toast } from "react-toastify";
 
 const Education = () => {
   const [showMore, setShowMore] = useState(false);
   const [openEducation, setOpenEducation] = useState(false);
   const token = localStorage.getItem("accessToken");
   const [education, setEducation] = useState([]);
+  const [ institution, setInstitution ] = useState("");
+  const [ degree, setDegree ] = useState("");
+  const [ fieldOfSstudy, setFieldOfSstudy ] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [ educationType, setEducationType ] = useState("");
+  const [ description, setDescription ] = useState("");
+  const getEducation = async () => {
+    try {
+      const res = await apiRoot.get("/education", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res?.data);
+      setEducation(res?.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const getEducation = async () => {
-      try {
-        const res = await apiRoot.get("/education", {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(res?.data);
-        setEducation(res?.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     getEducation();
   }, []);
+
+  const handlePostEducation = async (e) => {
+    e.preventDefault()
+
+    const data = {
+      institution: institution,
+      degree: degree,
+      field_of_study: fieldOfSstudy,
+      start_date: new Date(startDate).toISOString(),
+      end_date: new Date(endDate).toISOString(),
+      education_type: educationType,
+      description: description
+    }
+
+    try {
+      const res = await apiRoot.post("/education", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      console.log(res?.data);
+      getEducation()
+      toast.success("Education Successfully added")
+      setOpenEducation(false)
+      setInstitution("")
+      setDegree("");
+      setFieldOfSstudy("")
+      setStartDate("")
+      setEndDate("")
+      setEducationType("")
+      setDescription("")
+    }catch(err) { 
+      console.log(err);
+      toast.success("Failed add education")
+    }
+  }
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -100,6 +146,74 @@ const Education = () => {
         <SkillModal close={() => setOpenEducation(false)}>
           <div className="bg-white rounded-[8px] p-4">
             <h1 className="mb-3 font-semibold text-[25px]">Add education</h1>
+            <form className="flex flex-col gap-2" onSubmit={handlePostEducation}>
+              <div className="flex flex-col">
+                <label className="mb-2">Enter institution</label>
+                <input
+                  type="text"
+                  placeholder="Enter institution"
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  onChange={(e) => setInstitution(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">Degree</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="text"
+                  placeholder="Degree"
+                  onChange={(e) => setDegree(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">Field of study</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="text"
+                  placeholder="Field of study"
+                  onChange={(e) => setFieldOfSstudy(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">Start date</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="date"
+                  placeholder="Start date"
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">End date</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="date"
+                  placeholder="End date"
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">Education type</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="text"
+                  placeholder="education type"
+                  onChange={(e) => setEducationType(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="mb-2">Description</label>
+                <input
+                  className="p-2 border rounded-[8px] border-[#130B544D] outline-none"
+                  type="text"
+                  placeholder="description"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <button className="bg-black p-2 rounded-[8px] text-white">
+                submit
+              </button>
+            </form>
           </div>
         </SkillModal>
       )}
