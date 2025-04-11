@@ -28,9 +28,9 @@ const Profile = () => {
           profileImg: user?.image,
           profileName: user?.name,
           profileEmail: user?.email,
-          profileAge: "N/A",
-          profileGender: "N/A",
-          profileLocation: "N/A",
+          profileAge: user?.age,
+          profileGender: user?.location,
+          profileLocation: user?.gender,
         });
       } catch (err) {
         console.log(err);

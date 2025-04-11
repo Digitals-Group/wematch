@@ -14,13 +14,15 @@ const Education = () => {
   const [openEducation, setOpenEducation] = useState(false);
   const token = localStorage.getItem("accessToken");
   const [education, setEducation] = useState([]);
-  const [ institution, setInstitution ] = useState("");
-  const [ degree, setDegree ] = useState("");
-  const [ fieldOfSstudy, setFieldOfSstudy ] = useState("");
+  const [institution, setInstitution] = useState("");
+  const [degree, setDegree] = useState("");
+  const [fieldOfSstudy, setFieldOfSstudy] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [ educationType, setEducationType ] = useState("");
-  const [ description, setDescription ] = useState("");
+  const [educationType, setEducationType] = useState("");
+  const [description, setDescription] = useState("");
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleteEducationId, setDeleteEducationId] = useState(null);
   const getEducation = async () => {
     try {
       const res = await apiRoot.get("/education", {
@@ -41,7 +43,7 @@ const Education = () => {
   }, []);
 
   const handlePostEducation = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const data = {
       institution: institution,
@@ -50,8 +52,8 @@ const Education = () => {
       start_date: new Date(startDate).toISOString(),
       end_date: new Date(endDate).toISOString(),
       education_type: educationType,
-      description: description
-    }
+      description: description,
+    };
 
     try {
       const res = await apiRoot.post("/education", data, {
@@ -60,23 +62,47 @@ const Education = () => {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
       console.log(res?.data);
-      getEducation()
-      toast.success("Education Successfully added")
-      setOpenEducation(false)
-      setInstitution("")
+      getEducation();
+      toast.success("Education Successfully added");
+      setOpenEducation(false);
+      setInstitution("");
       setDegree("");
-      setFieldOfSstudy("")
-      setStartDate("")
-      setEndDate("")
-      setEducationType("")
-      setDescription("")
-    }catch(err) { 
+      setFieldOfSstudy("");
+      setStartDate("");
+      setEndDate("");
+      setEducationType("");
+      setDescription("");
+    } catch (err) {
       console.log(err);
-      toast.success("Failed add education")
+      toast.error("Failed add education");
     }
-  }
+  };
+
+  const handleDeleteEducation = async () => {
+    try {
+      const res = await apiRoot.delete(`/education/${deleteEducationId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(res?.data);
+      toast.success("Successfully deleted");
+      setDeleteModal(false)
+      getEducation();
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to delete");
+    }
+  };
+
+  const deleteEducation = (id) => {
+    setDeleteEducationId(id);
+    setDeleteModal(true);
+  };
 
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
@@ -128,7 +154,10 @@ const Education = () => {
                     <MdEdit className="w-4 h-4" />
                   </button>
                   <button>
-                    <MdDelete className="w-4 h-4" />
+                    <MdDelete
+                      className="w-4 h-4"
+                      onClick={() => deleteEducation(id)}
+                    />
                   </button>
                 </div>
               </div>
@@ -146,7 +175,10 @@ const Education = () => {
         <SkillModal close={() => setOpenEducation(false)}>
           <div className="bg-white rounded-[8px] p-4">
             <h1 className="mb-3 font-semibold text-[25px]">Add education</h1>
-            <form className="flex flex-col gap-2" onSubmit={handlePostEducation}>
+            <form
+              className="flex flex-col gap-2"
+              onSubmit={handlePostEducation}
+            >
               <div className="flex flex-col">
                 <label className="mb-2">Enter institution</label>
                 <input
@@ -214,6 +246,17 @@ const Education = () => {
                 submit
               </button>
             </form>
+          </div>
+        </SkillModal>
+      )}
+      {deleteModal && (
+        <SkillModal close={() => setDeleteModal(false)}>
+          <div className="bg-white rounded-[8px] p-4">
+            <h1 className="mb-3 font-semibold text-[25px]">Delete education</h1>
+            <div className="flex items-center justify-between">
+              <button onClick={handleDeleteEducation}>Delete</button>
+              <button onClick={() => setDeleteModal(false)}>Cencel</button>
+            </div>
           </div>
         </SkillModal>
       )}
