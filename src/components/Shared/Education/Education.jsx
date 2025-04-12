@@ -91,7 +91,7 @@ const Education = () => {
       });
       console.log(res?.data);
       toast.success("Successfully deleted");
-      setDeleteModal(false)
+      setDeleteModal(false);
       getEducation();
     } catch (err) {
       console.log(err);
